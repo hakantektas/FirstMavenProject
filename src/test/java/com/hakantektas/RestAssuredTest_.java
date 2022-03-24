@@ -35,7 +35,7 @@ public class RestAssuredTest_ {
         JSONObject params =new JSONObject();
         int [] myArray = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","9914");
+        params.put("deviceId","145");
         params.put("status","1");
 
         httpRequest.body(params.toJSONString());
@@ -51,7 +51,7 @@ public class RestAssuredTest_ {
         JSONObject params =new JSONObject();
         int [] myArray = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","9916");
+        params.put("deviceId","155");
         params.put("status","1");
 
         httpRequest.body(params.toJSONString());
@@ -67,7 +67,7 @@ public class RestAssuredTest_ {
         JSONObject params =new JSONObject();
         int [] myArray = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","9917");
+        params.put("deviceId","165");
         params.put("status","1");
 
         httpRequest.body(params.toJSONString());
@@ -83,7 +83,7 @@ public class RestAssuredTest_ {
         JSONObject params =new JSONObject();
         int [] myArray = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","9918");
+        params.put("deviceId","174");
         params.put("status","1");
 
         httpRequest.body(params.toJSONString());
@@ -99,7 +99,7 @@ public class RestAssuredTest_ {
         JSONObject params =new JSONObject();
         int [] myArray = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","9919");
+        params.put("deviceId","5565");
         params.put("status","1");
 
         httpRequest.body(params.toJSONString());
@@ -115,7 +115,7 @@ public class RestAssuredTest_ {
         JSONObject params =new JSONObject();
         int [] myArray = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","125");
+        params.put("deviceId","9939");
         params.put("status","1");
 
         httpRequest.body(params.toJSONString());
@@ -131,7 +131,7 @@ public class RestAssuredTest_ {
         JSONObject params =new JSONObject();
         int [] myArray = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","5306");
+        params.put("deviceId","9950");
         params.put("status","1");
 
         httpRequest.body(params.toJSONString());

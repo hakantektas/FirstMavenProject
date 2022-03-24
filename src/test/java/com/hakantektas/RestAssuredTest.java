@@ -31,21 +31,21 @@ public class RestAssuredTest {
     @Test(priority=2)
     public  void getDevice()  {
         RequestSpecification httpRequest = given();
-        Response res = httpRequest.auth().oauth2(token).get("https://api.momentumsuite.com/api/devices/");
+        Response res = httpRequest.auth().oauth2(token).get("https://api.momentumsuite.com/api/devices/GetBusyDevices");
         res.prettyPrint();
         JsonPath jsonPathEvaluator = res.jsonPath();
-        List<DeviceList> allDeviceId = jsonPathEvaluator.getList("result.data",DeviceList.class);
-        _alldevices=allDeviceId;
-        System.out.println("Total Cihaz Sayısı:" + _alldevices.size());
+        List<BusyDeviceList> allId2 = jsonPathEvaluator.getList("result",BusyDeviceList.class);
+        _devices=allId2;
+        System.out.println("Total Cihaz Sayısı:" + _devices.size());
     }
 
     public static String changeStatus(String status) {
-        if (_alldevices.size()!=0) {
+        if (_devices.size()>0) {
             RequestSpecification httpRequest = given();
             httpRequest.header("Content-Type", "application/json");
             JSONObject params =new JSONObject();
-            for (int i=0 ; i <_alldevices.size() ; i ++) {
-                params.put("deviceId", _alldevices.get(i).id);
+            for (int i=0 ; i <_devices.size() ; i ++) {
+                params.put("deviceId", _devices.get(i).id);
                 params.put("status", status);
                 httpRequest.body(params.toJSONString());
                 Response response3 = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
