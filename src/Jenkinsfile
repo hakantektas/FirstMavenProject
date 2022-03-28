@@ -1,34 +1,33 @@
 pipeline {
     agent any
-
     tools {
-        maven "MAVEN"
-        jdk "JDK"
+        maven 'Maven 3.8.4'
+        jdk 'jdk8'
     }
-
     stages {
-        stage('Initialize'){
-            steps{
-                echo "PATH = ${M2_HOME}/bin:${PATH}"
-                echo "M2_HOME = /usr/local/Cellar/maven/3.8.4/bin/"
-            }
-        }
-        stage('Build') {
+        stage ('Initialize') {
             steps {
-                dir("/Users/mobven/FirstMavenProject/") {
-                //sh 'mvn -B -DskipTests clean test'
-                sh 'mvn clean test'
-                }
-
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
-     }
-    post {
-       always {
-          junit(
-        allowEmptyResults: true,
-        testResults: '*/test-reports/.xml'
-      )
-      }
-   }
+
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
+            }
+        }
+        stage ('Build') {
+                    steps {
+                        sh 'mvn -Dmaven.test.failure.ignore=true install'
+                    }
+                    post {
+                        success {
+                            junit 'target/surefire-reports/**/*.xml'
+                        }
+                    }
+                }
+    }
 }
