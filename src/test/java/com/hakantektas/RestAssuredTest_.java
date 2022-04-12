@@ -13,6 +13,7 @@ import static io.restassured.RestAssured.given;
 public class RestAssuredTest_ {
 
     private static String token;
+    public static  List<BusyDeviceList> _devices;
     @Test(priority=1)
     public void bearerTokenAuthenticationLogin(){
         RequestSpecification request = given();
@@ -27,13 +28,14 @@ public class RestAssuredTest_ {
         String tokenGenerated = JsonPath.from(jsonString).get("result.accessToken");
         token= tokenGenerated;
     }
-    @Test(priority=2)
+   /* @Test(priority=2)
     public void changeStatusOnline() {
 
         RequestSpecification httpRequest = given();
         httpRequest.header("Content-Type", "application/json");
         JSONObject params =new JSONObject();
-        int [] myArray = {9914,9916,9917,9918,9919,125,5306};
+
+        int [] _devices = {9914,9916,9917,9918,9919,125,5306};
 
         params.put("deviceId","145");
         params.put("status","1");
@@ -43,39 +45,54 @@ public class RestAssuredTest_ {
         response.prettyPrint();
 
     }
-    @Test(priority=3)
-    public void changeStatusOnline2() {
+*/
+    public static String changeStatus(String status) {
+        int[] _devices = {10, 56, 59, 88, 89, 103, 104, 118, 125, 134, 145, 150, 153, 154, 155, 156, 165, 173, 174, 5306, 5435, 5560, 5561, 5562, 5565, 5568, 5575, 9899, 9900, 9904, 9905, 9908, 9914, 9926, 9933, 9939, 9941, 9942, 9945, 9948, 9949, 9952, 9953, 9954, 9957, 9959, 9960, 9961, 9963, 9964, 9966, 9967, 9976, 9978, 9982};
 
         RequestSpecification httpRequest = given();
         httpRequest.header("Content-Type", "application/json");
-        JSONObject params =new JSONObject();
-        int [] myArray = {9914,9916,9917,9918,9919,125,5306};
+        JSONObject params = new JSONObject();
+        if (_devices.length> 0) {
+            for (int i = 0; i < _devices.length - 1; i++) {
+                int sayi = _devices[i];
 
-        params.put("deviceId","155");
-        params.put("status","1");
+                    params.put("deviceId", sayi);
+                    params.put("status", status);
+                    httpRequest.body(params.toJSONString());
+                    Response response3 = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
+                    response3.prettyPrint();
+            }
+        }
+            return status;
 
-        httpRequest.body(params.toJSONString());
-        Response response = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
-        response.prettyPrint();
+    }
+    @Test(priority=2)
+    public void changeStatusOffline() {
+        changeStatus("3");
+    }
+    @Test(priority=3)
+    public void changeStatusBusy() {
+
+        changeStatus("2");
 
     }
     @Test(priority=4)
-    public void changeStatusOnline3() {
+    public void changeStatusOnline() {
 
-        RequestSpecification httpRequest = given();
-        httpRequest.header("Content-Type", "application/json");
-        JSONObject params =new JSONObject();
-        int [] myArray = {9914,9916,9917,9918,9919,125,5306};
-
-        params.put("deviceId","165");
-        params.put("status","1");
-
-        httpRequest.body(params.toJSONString());
-        Response response = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
-        response.prettyPrint();
+        changeStatus("1");
 
     }
     @Test(priority=5)
+    public  void loginWithGetBusyDevice()  {
+        RequestSpecification httpRequest = given();
+        Response res = httpRequest.auth().oauth2(token).get("https://api.momentumsuite.com/api/devices/GetBusyDevices");
+        res.prettyPrint();
+        JsonPath jsonPathEvaluator = res.jsonPath();
+        List<BusyDeviceList> allId = jsonPathEvaluator.getList("result",BusyDeviceList.class);
+        _devices=allId;
+        System.out.println("Total Busyde Kalan Cihaz:" + _devices.size());
+    }
+    /*@Test(priority=5)
     public void changeStatusOnline4() {
 
         RequestSpecification httpRequest = given();
@@ -138,6 +155,6 @@ public class RestAssuredTest_ {
         Response response = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
         response.prettyPrint();
 
-    }
+    }*/
 }
 

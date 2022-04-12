@@ -12,7 +12,6 @@ import static io.restassured.RestAssured.given;
 
 public class RestAssuredTest {
     private static  List<BusyDeviceList> _devices;
-    private static List<DeviceList> _alldevices;
     private static String token;
     @Test(priority=1)
     public void bearerTokenAuthenticationLogin(){
