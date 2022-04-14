@@ -28,26 +28,26 @@ public class RestAssuredTest_ {
         String tokenGenerated = JsonPath.from(jsonString).get("result.accessToken");
         token= tokenGenerated;
     }
-   /* @Test(priority=2)
-    public void changeStatusOnline() {
+    /* @Test(priority=2)
+     public void changeStatusOnline() {
 
-        RequestSpecification httpRequest = given();
-        httpRequest.header("Content-Type", "application/json");
-        JSONObject params =new JSONObject();
+         RequestSpecification httpRequest = given();
+         httpRequest.header("Content-Type", "application/json");
+         JSONObject params =new JSONObject();
 
-        int [] _devices = {9914,9916,9917,9918,9919,125,5306};
+         int [] _devices = {9914,9916,9917,9918,9919,125,5306};
 
-        params.put("deviceId","145");
-        params.put("status","1");
+         params.put("deviceId","145");
+         params.put("status","1");
 
-        httpRequest.body(params.toJSONString());
-        Response response = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
-        response.prettyPrint();
+         httpRequest.body(params.toJSONString());
+         Response response = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
+         response.prettyPrint();
 
-    }
-*/
+     }
+ */
     public static String changeStatus(String status) {
-        int[] _devices = {10, 56, 59, 88, 89, 103, 104, 118, 125, 134, 145, 150, 153, 154, 155, 156, 165, 173, 174, 5306, 5435, 5560, 5561, 5562, 5565, 5568, 5575, 9899, 9900, 9904, 9905, 9908, 9914, 9926, 9933, 9939, 9941, 9942, 9945, 9948, 9949, 9952, 9953, 9954, 9957, 9959, 9960, 9961, 9963, 9964, 9966, 9967, 9976, 9978, 9982,125,5306,9914,9916,9917,9918,9919};
+        int[] _devices = {10, 56,57, 59, 88, 89, 103, 104, 118, 125, 134, 145, 150, 153, 154, 155, 156, 165, 173, 174, 5306, 5435, 5560, 5561, 5562, 5565, 5568, 5575, 9899, 9900, 9904, 9905,9906, 9908, 9914, 9926, 9933, 9939, 9941, 9942, 9945, 9948, 9949, 9952, 9953, 9954, 9957, 9959, 9960, 9961, 9963, 9964, 9966, 9967, 9976, 9978, 9982,125,5306,9914,9916,9917,9918,9919,10};
 
         RequestSpecification httpRequest = given();
         httpRequest.header("Content-Type", "application/json");
@@ -56,14 +56,14 @@ public class RestAssuredTest_ {
             for (int i = 0; i < _devices.length - 1; i++) {
                 int sayi = _devices[i];
 
-                    params.put("deviceId", sayi);
-                    params.put("status", status);
-                    httpRequest.body(params.toJSONString());
-                    Response response3 = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
-                    response3.prettyPrint();
+                params.put("deviceId", sayi);
+                params.put("status", status);
+                httpRequest.body(params.toJSONString());
+                Response response3 = httpRequest.auth().oauth2(token).post("https://api.momentumsuite.com/api/devices/changeStatus");
+                response3.prettyPrint();
             }
         }
-            return status;
+        return status;
 
     }
     @Test(priority=2)
