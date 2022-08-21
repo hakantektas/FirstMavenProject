@@ -1,11 +1,11 @@
 package com.hakantektas;
+
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -18,8 +18,8 @@ public class RestAssuredTest_ {
     public void bearerTokenAuthenticationLogin(){
         RequestSpecification request = given();
         String postData = "{\n" +
-                "  \"username\": \"hakan.tektas@mobven.com\",\n" +
-                "  \"password\": \"571632gS.\"\n" +
+                "  \"username\": \"demo@mobven.com\",\n" +
+                "  \"password\": \"testing\"\n" +
                 "}";
         request.header("Content-Type","application/json");
         Response responseFromGenerateToken=  request.body(postData).post("https://api.momentumsuite.com/api/auth/");
@@ -47,7 +47,7 @@ public class RestAssuredTest_ {
      }
  */
     public static String changeStatus(String status) {
-        int[] _devices = {10, 56,57, 59, 88, 89, 103, 104, 118, 125, 134, 145, 150, 153, 154, 155, 156, 165, 173, 174, 5306, 5435, 5560, 5561, 5562, 5565, 5568, 5575, 9899, 9900, 9904, 9905,9906, 9908, 9914, 9926, 9933, 9939, 9941, 9942, 9945, 9948, 9949, 9952, 9953, 9954, 9957, 9959, 9960, 9961, 9963, 9964, 9966, 9967, 9976, 9978, 9982,125,5306,9914,9916,9917,9918,9919,10};
+        int[] _devices = {6000, 6001,6002, 6003, 6004, 6005, 6006, 6012, 6013, 6014, 6016, 6017, 6018, 6019, 6020, 6021, 6022, 7000, 7001, 7002, 7003, 7004, 7005, 7006, 7007, 7008, 7009, 7010, 7011, 7012, 7013, 7014,7015, 7016, 7017, 7018, 7019, 7020, 7021, 7022, 7023, 7024, 7025, 7026, 7027, 7028, 7029, 7030, 7031, 7032, 7033, 7034, 7035,7036, 7037, 7038, 7039,7040,7041,7042,7043};
 
         RequestSpecification httpRequest = given();
         httpRequest.header("Content-Type", "application/json");
