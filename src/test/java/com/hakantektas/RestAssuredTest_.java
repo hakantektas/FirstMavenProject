@@ -17,12 +17,9 @@ public class RestAssuredTest_ {
     @Test(priority=1)
     public void bearerTokenAuthenticationLogin(){
         RequestSpecification request = given();
-        String postData = "{\n" +
-                "  \"username\": \"demo@mobven.com\",\n" +
-                "  \"password\": \"testing\"\n" +
-                "}";
+        data test = new data();
         request.header("Content-Type","application/json");
-        Response responseFromGenerateToken=  request.body(postData).post("https://api.momentumsuite.com/api/auth/");
+        Response responseFromGenerateToken=  request.body(test.postData).post("https://api.momentumsuite.com/api/auth/");
         responseFromGenerateToken.prettyPrint();
         String jsonString = responseFromGenerateToken.getBody().asString();
         String tokenGenerated = JsonPath.from(jsonString).get("result.accessToken");
